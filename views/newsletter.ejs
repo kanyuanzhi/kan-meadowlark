@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meadowlark Travel</title>
+    <%include ./layouts/common-head.ejs%>
+</head>
+<body>
+<div class="formContainer" id="formContainer">
+    <form class="form-horizontal" role="form">
+        <input type="hidden" name="_csrf" value="<%=csrf%>">
+        <div class="form-group">
+            <label for="inputName" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputName" placeholder="Name" v-model="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputDatetime" class="col-sm-2 control-label">Birthday</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="inputDatetime" placeholder="Datetime" v-model="birthday">
+            </div>
+        </div>
+        <!--<div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Remember me
+                    </label>
+                </div>
+            </div>
+        </div>-->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" @click="submit">Sign in</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var form = new Vue({
+        el:'#formContainer',
+        data:{
+            name:"",
+            birthday:""
+        },
+        methods:{
+            submit:function () {
+                this.$http.post('/process?form=newsletter',{name:this.name,birthday:this.birthday}).then(response => {
+                    // get body data
+                    //this.someData = response.body;
+                    console.log(response)
+                }, response => {
+                    // error callback
+                });
+            } 
+        }
+    })
+</script>
+
+
+<%include ./layouts/tests%>
+</body>
+</html>

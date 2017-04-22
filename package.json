@@ -9,8 +9,10 @@
   "author": "kan",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "parse": "^1.9.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
